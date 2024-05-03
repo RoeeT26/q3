@@ -25,3 +25,6 @@ words_pool=$(curl -s https://raw.githubusercontent.com/dwyl/english-words/master
 # Looping as number of times as the length of the input string -5
 temporary_pool="$words_pool"
 for i in $(seq 0 4); do
+  # If s (silver), then present the words that do not consist at all (in any position) of the char attributed to s
+  if [[ "${char_colors:i:1}" == [Ss] ]]; then
+  suitable_words=$(echo "$temporary_pool" | grep -i -E -v "${user_word:${i}:1}")
