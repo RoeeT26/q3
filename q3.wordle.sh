@@ -32,3 +32,8 @@ for i in $(seq 0 4); do
   # If y (yellow), then present the words that do consist of this character (attributed to color yellow) but in a different position
   elif [[ "${char_colors:i:1}" == [Yy] ]]; then
   suitable_words=$(echo "$temporary_pool" | grep -i -E "${user_word:${i}:1}" | grep -i -E -v "^.{${i}}${user_word:${i}:1}.*$")
+
+  # If g (green), then present the words that do consist of this character (attributed to color green) at the same position as user_word
+  elif [[ "${char_colors:i:1}" == [Gg] ]]; then
+  suitable_words=$(echo "$temporary_pool" | grep -i -E "^.{${i}}${user_word:${i}:1}.*$")
+  fi
