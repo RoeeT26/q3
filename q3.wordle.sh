@@ -9,3 +9,5 @@ echo "didn't follow instructions..."
 read -p "Press enter to quit the game"
 exit 1
 fi
+
+read -p "choose s for silver, y for yellow, g for green: " char_colors
