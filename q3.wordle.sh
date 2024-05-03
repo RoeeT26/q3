@@ -25,21 +25,18 @@ words_pool=$(curl -s https://raw.githubusercontent.com/dwyl/english-words/master
 # Looping as number of times as the length of the input string -5
 temporary_pool="$words_pool"
 for i in $(seq 0 4); do
-  # If s (silver), then present the words that do not consist at all (in any position) of the char attributed to s
-  if [[ "${char_colors:i:1}" == [Ss] ]]; then
-  suitable_words=$(echo "$temporary_pool" | grep -i -E -v "${user_word:${i}:1}")
-
-  # If y (yellow), then present the words that do consist of this character (attributed to color yellow) but in a different position
-  elif [[ "${char_colors:i:1}" == [Yy] ]]; then
-  suitable_words=$(echo "$temporary_pool" | grep -i -E "${user_word:${i}:1}" | grep -i -E -v "^.{${i}}${user_word:${i}:1}.*$")
-
-  # If g (green), then present the words that do consist of this character (attributed to color green) at the same position as user_word
-  elif [[ "${char_colors:i:1}" == [Gg] ]]; then
-  suitable_words=$(echo "$temporary_pool" | grep -i -E "^.{${i}}${user_word:${i}:1}.*$")
-  fi
+# If s (silver), then present the words that do not consist at all (in any position) of the char attributed to s
+if [[ "${char_colors:i:1}" == [Ss] ]]; then
+suitable_words=$(echo "$temporary_pool" | grep -i -E -v "${user_word:${i}:1}")
+# If y (yellow), then present the words that do consist of this character (attributed to color yellow) but in a different position
+elif [[ "${char_colors:i:1}" == [Yy] ]]; then
+suitable_words=$(echo "$temporary_pool" | grep -i -E "${user_word:${i}:1}" | grep -i -E -v "^.{${i}}${user_word:${i}:1}.*$")
+# If g (green), then present the words that do consist of this character (attributed to color green) at the same position as user_word
+elif [[ "${char_colors:i:1}" == [Gg] ]]; then
+suitable_words=$(echo "$temporary_pool" | grep -i -E "^.{${i}}${user_word:${i}:1}.*$")
+fi
 if [[ -n "$suitable_words" ]]; then
 temporary_pool="$suitable_words"
 fi
 done
-
 echo "$temporary_pool"
