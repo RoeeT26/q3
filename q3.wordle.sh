@@ -21,3 +21,7 @@ fi
 
 # Extracting all the 5 alphabetic characters word from the the words file
 words_pool=$(curl -s https://raw.githubusercontent.com/dwyl/english-words/master/words.txt | grep -xE '[[:alpha:]]{5}')
+
+# Looping as number of times as the length of the input string -5
+temporary_pool="$words_pool"
+for i in $(seq 0 4); do
