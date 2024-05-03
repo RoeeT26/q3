@@ -41,3 +41,5 @@ if [[ -n "$suitable_words" ]]; then
 temporary_pool="$suitable_words"
 fi
 done
+
+echo "$temporary_pool"
