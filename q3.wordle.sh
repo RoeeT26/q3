@@ -37,3 +37,7 @@ for i in $(seq 0 4); do
   elif [[ "${char_colors:i:1}" == [Gg] ]]; then
   suitable_words=$(echo "$temporary_pool" | grep -i -E "^.{${i}}${user_word:${i}:1}.*$")
   fi
+if [[ -n "$suitable_words" ]]; then
+temporary_pool="$suitable_words"
+fi
+done
