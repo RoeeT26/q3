@@ -18,3 +18,6 @@ echo "didn't follow instructions..."
 read -p "Press enter to quit the game"
 exit 1
 fi
+
+# Extracting all the 5 alphabetic characters word from the the words file
+words_pool=$(curl -s https://raw.githubusercontent.com/dwyl/english-words/master/words.txt | grep -xE '[[:alpha:]]{5}')
